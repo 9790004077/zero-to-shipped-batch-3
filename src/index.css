@@ -2,40 +2,35 @@
 @import "tailwindcss";
 
 /* Theme colours. Dark is the default. [data-theme="light"] on <html> swaps the values
-   underneath, so every component that uses these tokens switches with it. */
+   underneath, so every component that uses these tokens switches with it.
+   --accent is for fills; --accent-ink is the orange used for text, tuned for contrast. */
 :root {
   color-scheme: dark;
-  --page: #0a0a0a;
-  --surface: #151515;
-  --surface-2: #232323;
-  --line: #2e2e2e;
-  --ink: #f5ecdb;
-  --muted: #a39b8c;
-  --accent: #ff7a1a;
-  --accent-hover: #ff9a4d;
-  --on-accent: #0a0a0a;
-  --good: #7fd6a0;
-  --bad: #ff8c82;
-  --warn: #ffc66b;
+  --page: #000000;
+  --surface: #141210;
+  --surface-2: #211f1b;
+  --line: #3a3731;
+  --ink: #f2ead8;
+  --muted: #a8a093;
+  --accent: #ff5c1f;
+  --accent-ink: #ff7a3d;
+  --on-accent: #000000;
 }
 
 [data-theme="light"] {
   color-scheme: light;
-  --page: #f6eedc;
-  --surface: #fffaf0;
-  --surface-2: #ece1c9;
-  --line: #dccdb0;
-  --ink: #111111;
-  --muted: #6b6356;
-  --accent: #ea580c;
-  --accent-hover: #c2410c;
-  --on-accent: #ffffff;
-  --good: #15803d;
-  --bad: #b91c1c;
-  --warn: #a16207;
+  --page: #f2ead8;
+  --surface: #faf5ea;
+  --surface-2: #e6dcc6;
+  --line: #cfc3a8;
+  --ink: #000000;
+  --muted: #5c564a;
+  --accent: #ff5c1f;
+  --accent-ink: #b8380a;
+  --on-accent: #000000;
 }
 
-/* Expose the variables as Tailwind colours, so classes like bg-page and text-ink exist. */
+/* Expose the variables as Tailwind colours and fonts. */
 @theme inline {
   --color-page: var(--page);
   --color-surface: var(--surface);
@@ -44,14 +39,41 @@
   --color-ink: var(--ink);
   --color-muted: var(--muted);
   --color-accent: var(--accent);
-  --color-accent-hover: var(--accent-hover);
+  --color-accent-ink: var(--accent-ink);
   --color-on-accent: var(--on-accent);
-  --color-good: var(--good);
-  --color-bad: var(--bad);
-  --color-warn: var(--warn);
+  --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Source Serif 4", Georgia, serif;
 }
 
 body {
   background: var(--page);
   color: var(--ink);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Keyboard users get a clear, orange ring on whatever has focus. */
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* The one moment of motion: score bars fill from the left when results arrive.
+   It answers the person's action (clicking compare), so it stays. */
+.score-fill {
+  transform-origin: left center;
+  animation: fill-in 900ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes fill-in {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .score-fill {
+    animation: none;
+  }
 }

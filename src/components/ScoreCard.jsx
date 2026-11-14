@@ -8,31 +8,31 @@ export default function ScoreCard({ result }) {
   const { overall, breakdown, matched, missing, strengths, weaknesses, keywordCount } = result;
 
   return (
-    <section className="space-y-8">
-      <Card className="p-8 flex flex-col md:flex-row items-center gap-8">
-        <div className="text-center">
-          <p className="text-6xl font-bold text-accent">{overall}</p>
-          <p className="text-sm text-muted mt-1">Overall match</p>
-        </div>
-        <div className="flex-1 w-full space-y-4">
+    <section className="space-y-14">
+      <div className="grid gap-10 md:grid-cols-[minmax(0,auto)_1fr] items-end border-t-2 border-ink pt-6">
+        <p className="font-display font-bold leading-none tracking-tighter text-[clamp(7rem,18vw,13rem)] text-accent-ink [font-stretch:75%]">
+          {overall}
+        </p>
+        <div className="space-y-5 pb-2">
+          <p className="font-display text-xl font-semibold">Overall match</p>
           <ScoreBar label="Keyword match (60%)" value={breakdown.match} />
           <ScoreBar label="Structure (25%)" value={breakdown.structure} />
           <ScoreBar label="Impact (15%)" value={breakdown.impact} />
-          <p className="text-xs text-muted">{keywordCount} key terms read from the job description.</p>
+          <p className="text-sm text-muted">{keywordCount} key terms read from the job description.</p>
         </div>
-      </Card>
+      </div>
 
-      <div className="grid gap-6 md:grid-cols-2">
-        <Card title="Found in your resume" titleClassName="text-good">
+      <div className="grid gap-x-12 gap-y-14 md:grid-cols-2">
+        <Card title="Found in your resume">
           <TagList items={matched} tone="match" />
         </Card>
-        <Card title="Missing from your resume" titleClassName="text-bad">
+        <Card title="Missing from your resume">
           <TagList items={missing} tone="miss" />
         </Card>
-        <Card title="Strengths" titleClassName="text-good">
+        <Card title="Strengths">
           <FeedbackList items={strengths} emptyText="No clear strengths found yet." />
         </Card>
-        <Card title="Weaknesses" titleClassName="text-warn">
+        <Card title="Weaknesses">
           <FeedbackList items={weaknesses} emptyText="No major weaknesses found." />
         </Card>
       </div>

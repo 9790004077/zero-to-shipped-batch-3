@@ -7,6 +7,7 @@ import ThemeToggle from "./components/ThemeToggle.jsx";
 import { useAnalysis } from "./hooks/useAnalysis.js";
 import { useTheme } from "./hooks/useTheme.js";
 import { MIN_JD_LENGTH } from "./lib/constants.js";
+import { SAMPLE_RESULT } from "./lib/sampleResult.js";
 
 export default function App() {
   const [file, setFile] = useState(null);
@@ -29,36 +30,51 @@ export default function App() {
 
   return (
     <main className="min-h-screen bg-page text-ink">
-      <div className="max-w-4xl mx-auto px-6 py-12 space-y-12">
-        <div className="flex justify-end">
+      <div className="max-w-5xl mx-auto px-6 py-8 md:py-12 space-y-16">
+        <div className="flex items-center justify-between border-b-2 border-ink pb-4">
+          <p className="font-display text-xl font-bold tracking-tight">Resume Parser</p>
           <ThemeToggle theme={theme} onToggle={toggle} />
         </div>
-        <header className="text-center space-y-4">
-          <p className="text-sm uppercase tracking-widest text-accent">Resume Parser</p>
-          <h1 className="text-4xl md:text-5xl font-bold">See how well your resume fits the job</h1>
-          <p className="text-muted max-w-2xl mx-auto">
+
+        <header className="space-y-6 max-w-3xl">
+          <h1 className="font-display font-bold text-[clamp(3rem,9vw,7.5rem)] leading-[0.92] tracking-tight [font-stretch:75%]">
+            See how well your resume fits the job
+          </h1>
+          <p className="text-lg leading-relaxed text-muted max-w-[65ch]">
             Drop in your resume (PDF or Word) and paste a job description. You get a scorecard showing
             what matches, what is missing, and where your resume is strong or weak.
           </p>
         </header>
 
-        <section className="grid gap-6 md:grid-cols-2">
-          <div>
-            <p className="block text-sm font-medium mb-2">1. Your resume</p>
+        <section className="grid gap-10 md:grid-cols-2">
+          <div className="space-y-3">
+            <p className="font-display text-lg font-semibold">1. Your resume</p>
             <DropZone file={file} onFile={setFile} />
           </div>
 
           <JobDescriptionInput value={jobDescription} onChange={setJobDescription} />
 
-          <div className="md:col-span-2 flex flex-col items-center gap-3">
+          <div className="md:col-span-2 flex flex-col items-start gap-3">
             <Button onClick={handleCompare} loading={isLoading}>
               Compare resume to job
             </Button>
-            <p className="text-sm text-bad min-h-[1.25rem]">{message}</p>
+            <p className="text-sm text-accent-ink min-h-[1.25rem]">{message}</p>
           </div>
         </section>
 
-        {status === "done" && result && <ScoreCard result={result} />}
+        {status === "done" && result ? (
+          <ScoreCard result={result} />
+        ) : (
+          <section className="space-y-4">
+            <div className="text-center space-y-1">
+              <p className="text-sm uppercase tracking-widest text-accent">Example results</p>
+              <p className="text-sm text-muted">
+                This is a sample, not your resume. Upload yours above to see your own scorecard.
+              </p>
+            </div>
+            <ScoreCard result={SAMPLE_RESULT} />
+          </section>
+        )}
       </div>
     </main>
   );

@@ -5,10 +5,9 @@ export default function ThemeToggle({ theme, onToggle }) {
     <button
       type="button"
       onClick={onToggle}
-      aria-label={`Switch to ${next} theme`}
-      className="px-4 py-2 rounded-full border border-line bg-surface text-sm font-medium text-ink hover:border-accent transition"
+      className="font-display text-sm font-semibold underline decoration-2 underline-offset-4 decoration-accent hover:text-accent-ink"
     >
-      {theme === "dark" ? "☀ Light" : "☾ Dark"}
+      Use {next} theme
     </button>
   );
 }

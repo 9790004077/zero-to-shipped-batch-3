@@ -1,8 +1,9 @@
 // Full class names are written out here, not built from parts,
 // because Tailwind only generates classes it can find as complete strings in the source.
+// Solid chip = present in your resume. Dashed outline = a gap to close.
 const TONES = {
-  match: "bg-good/20 text-good",
-  miss: "bg-bad/20 text-bad",
+  match: "bg-ink text-page",
+  miss: "border border-dashed border-accent text-accent-ink",
 };
 
 // Reusable list of keyword pills, coloured by tone ("match" or "miss").

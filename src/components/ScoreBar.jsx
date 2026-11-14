@@ -2,12 +2,12 @@
 export default function ScoreBar({ label, value }) {
   return (
     <div>
-      <div className="flex justify-between text-sm mb-1">
+      <div className="flex justify-between mb-2">
         <span className="text-ink">{label}</span>
-        <span className="text-muted">{value}%</span>
+        <span className="tabular-nums text-muted">{value}%</span>
       </div>
-      <div className="h-2 rounded-full bg-surface-2 overflow-hidden">
-        <div className="h-2 rounded-full bg-accent transition-all" style={{ width: `${value}%` }} />
+      <div className="h-3 bg-surface-2 overflow-hidden">
+        <div className="score-fill h-3 bg-accent" style={{ width: `${value}%` }} />
       </div>
     </div>
   );

@@ -2,7 +2,7 @@
 export default function JobDescriptionInput({ value, onChange }) {
   return (
     <div>
-      <label htmlFor="jd" className="block text-sm font-medium mb-2">
+      <label htmlFor="jd" className="block font-display text-lg font-semibold mb-3">
         2. Job description
       </label>
       <textarea
@@ -10,7 +10,7 @@ export default function JobDescriptionInput({ value, onChange }) {
         value={value}
         onChange={(event) => onChange(event.target.value)}
         placeholder="Paste the job description here..."
-        className="w-full h-56 rounded-2xl bg-surface border border-line text-ink p-4 text-sm focus:outline-none focus:ring-2 focus:ring-accent"
+        className="w-full h-64 bg-surface border-2 border-ink text-ink p-4 font-body text-base leading-relaxed placeholder:text-muted focus:outline-none focus:border-accent"
       />
     </div>
   );
