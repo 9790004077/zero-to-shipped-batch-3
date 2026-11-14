@@ -1,2 +1,57 @@
 /* Tailwind v4: one import brings in all the utility classes. */
 @import "tailwindcss";
+
+/* Theme colours. Dark is the default. [data-theme="light"] on <html> swaps the values
+   underneath, so every component that uses these tokens switches with it. */
+:root {
+  color-scheme: dark;
+  --page: #0a0a0a;
+  --surface: #151515;
+  --surface-2: #232323;
+  --line: #2e2e2e;
+  --ink: #f5ecdb;
+  --muted: #a39b8c;
+  --accent: #ff7a1a;
+  --accent-hover: #ff9a4d;
+  --on-accent: #0a0a0a;
+  --good: #7fd6a0;
+  --bad: #ff8c82;
+  --warn: #ffc66b;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+  --page: #f6eedc;
+  --surface: #fffaf0;
+  --surface-2: #ece1c9;
+  --line: #dccdb0;
+  --ink: #111111;
+  --muted: #6b6356;
+  --accent: #ea580c;
+  --accent-hover: #c2410c;
+  --on-accent: #ffffff;
+  --good: #15803d;
+  --bad: #b91c1c;
+  --warn: #a16207;
+}
+
+/* Expose the variables as Tailwind colours, so classes like bg-page and text-ink exist. */
+@theme inline {
+  --color-page: var(--page);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-on-accent: var(--on-accent);
+  --color-good: var(--good);
+  --color-bad: var(--bad);
+  --color-warn: var(--warn);
+}
+
+body {
+  background: var(--page);
+  color: var(--ink);
+}

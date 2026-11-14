@@ -4,6 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Resume Parser - Match your resume to a job description</title>
+    <script>
+      // Runs before the page paints: apply the saved theme so light-mode visitors don't flash dark.
+      (function () {
+        var saved = localStorage.getItem("theme");
+        if (saved === "light") document.documentElement.dataset.theme = "light";
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

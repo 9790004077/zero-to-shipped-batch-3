@@ -11,13 +11,13 @@ export default function DropZone({ file, onFile }) {
     <div
       {...dropProps}
       onClick={() => inputRef.current?.click()}
-      className={`flex flex-col items-center justify-center h-56 rounded-2xl border-2 border-dashed bg-slate-900 hover:border-indigo-400 transition cursor-pointer text-center p-6 ${
-        isDragging ? "border-indigo-400" : "border-slate-700"
+      className={`flex flex-col items-center justify-center h-56 rounded-2xl border-2 border-dashed bg-surface hover:border-accent transition cursor-pointer text-center p-6 ${
+        isDragging ? "border-accent" : "border-line"
       }`}
     >
       <p className="text-lg font-semibold">Drag and drop your resume here</p>
-      <p className="text-sm text-slate-400 mt-1">PDF or .docx, or click to choose a file</p>
-      {file && <p className="mt-4 text-sm text-indigo-300">Selected: {file.name}</p>}
+      <p className="text-sm text-muted mt-1">PDF or .docx, or click to choose a file</p>
+      {file && <p className="mt-4 text-sm text-accent">Selected: {file.name}</p>}
       <input
         ref={inputRef}
         type="file"
